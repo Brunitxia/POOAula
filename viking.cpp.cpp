@@ -1,20 +1,29 @@
 #include <iostream>
 #include <string>
 using namespace std;
-// indentificador das função
+// indentificador das funÃ§Ã£o
 void tela_inicial();
 void mostra_personagem();
 void mostra_menu();
+void distribuir_atributo(char papel);
+void tela_treinamento();
+void tela_atributo();
 
+
+//variaves globais 
+
+int vida, defesa, ataque;
+string estado = "iniciante";
+int pontos_extras = 0;
 //int pegar_vida();
 //string pegar_estado(int vida);
 
 /*
-*	Jogo de RPG onde construímos um personagem Viking.
+*	Jogo de RPG onde construÃ­mos um personagem Viking.
 *
 *	Diversas telas.
 *	Menus.
-*	Animações.
+*	AnimaÃ§Ãµes.
 *	
 */
 int main()
@@ -23,7 +32,7 @@ int main()
 	tela_inicial();
 	
 
-	// ----- MOSTRA A TELA DE CRIAÇÃO DE PERSONANGES ----- 
+	// ----- MOSTRA A TELA DE CRIAÃ‡ÃƒO DE PERSONANGES ----- 
 	cout << "Criando personagem.." << endl << endl;
 
 	int ataque, defesa, vida;
@@ -41,44 +50,11 @@ int main()
 	cout << "[M] Mago" << endl;
 	cout << "[L] Ladino" << endl;
 	cin >> papel;
-// switch é uma estrutura de teste como oif e o else
+// switch Ã© uma estrutura de teste como oif e o else
 //sempre no fim temos que usar o break para finalizar o teste 
 // default qual outra coisa 	
 	
-	switch(papel){
-	   case 'G':
-	   	case'g':
-	   		
-	ataque = 2;
-	defesa = 3;
-	vida = 10;
-	break;
-		
-		case 'M':
-		case'm':
-			
-		ataque = 3;
-		defesa = 2;
-		vida = 10;
-		break;
-		
-		case 'L':
-		case'l':
-			
-			ataque = 4;                                                                        
-		defesa = 1;
-		vida = 10;
-		break;
-	
-		default: 
-			cout << "Opcao invalida. Iniciando personagem fraco." << endl;
-		ataque = 1;
-		defesa = 1;
-		vida = 10;
-		
-}
-
-	system("cls");
+	distribuir_atributo(papel);
 
 
 	// ----- INICIA O LOOP PRINCIPAL DO JOGO ----- 
@@ -87,115 +63,25 @@ int main()
 	{
 	mostra_personagem();
 		
-		// ----- MOSTRA O MENU DE OPÇÕES PARA AÇÔES DO JOGADOR ----- 
+		// ----- MOSTRA O MENU DE OPÃ‡Ã•ES PARA AÃ‡Ã”ES DO JOGADOR ----- 
 		int opcao;
 		mostra_menu();
 		cin >> opcao;
-
-		if (opcao == 1)
-		{
-			// ----- MOSTRA A TELA DE TREINAMENTO ----- 
-			system("cls");
-
-			for (int vezes = 0; vezes < 20; vezes++)
-			{
-				cout << "Viajando para mares distantes.." << endl;
-				cout << endl;
-
-				if (vezes % 2 == 0)
-				{
-					cout << "                   ~." << endl;
-					cout << "            Ya...___|__..ab.     .   .  " << endl;
-					cout << "             Y88b  \\88b  \\88b   (     ) " << endl;
-					cout << "              Y88b  :88b  :88b   `.oo'  " << endl;
-					cout << "              :888  |888  |888  ( (`-'  " << endl;
-					cout << "     .---.    d88P  ;88P  ;88P   `.`.   " << endl;
-					cout << "    / .-._)  d8P-\"\"\" | \"\"\"'-Y8P      `.`. " << endl;
-					cout << "   ( (`._) .-.  .-. |.-.  .-.  .-.   ) )" << endl;
-					cout << "    \\ `---( O )( O )( O )( O )( O )-' / " << endl;
-					cout << "     `.    `-'  `-'  `-'  `-'  `-'  .'  " << endl;
-					cout << "       `---------------------------'" << endl;
-				}
-				else
-				{
-					cout << "                     ~." << endl;
-					cout << "              Ya...___|__..ab.     .   .  " << endl;
-					cout << "               Y88b  \\88b  \\88b   (     ) " << endl;
-					cout << "                Y88b  :88b  :88b   `.oo'  " << endl;
-					cout << "                :888  |888  |888  ( (`-'  " << endl;
-					cout << "       .---.    d88P  ;88P  ;88P   `.`.   " << endl;
-					cout << "      / .-._)  d8P-\"\"\" | \"\"\"'-Y8P      `.`. " << endl;
-					cout << "     ( (`._) .-.  .-. |.-.  .-.  .-.   ) )" << endl;
-					cout << "      \\ `---( O )( O )( O )( O )( O )-' / " << endl;
-					cout << "       `.    `-'  `-'  `-'  `-'  `-'  .'  " << endl;
-					cout << "         `---------------------------'" << endl;
-				}
-
-				system("cls");
-			}
-
-			cout << endl << "Voce treinou bastante durante sua viajem." << endl << endl;
-			// Aumentar os pontos extras do personagem.
-			pontos_extras++;
-
-			system("pause");
-			system("cls");
-		}
-		else if (opcao == 2)
-		{
-			// ----- MOSTRA A TELA DE ATRIBUTOS DO PERSONAGEM ----- 
-			system("cls");
-
-			cout << "Voce tem " << pontos_extras << " pontos de atributo." << endl;
-			cout << endl;
-
-			int aumentar;
-			cout << "Aumentar.." << endl;
-			cout << "1. Ataque" << endl;
-			cout << "2. Defesa" << endl;
-			cin >> aumentar;
-
-			if (aumentar == 1)
-			{
-				if (pontos_extras > 0)
-				{
-					cout << "Aumentou ATAQUE +2" << endl;
-					ataque += 2;
-					pontos_extras--;
-				}
-				else cout << "Pontos de atributos insuficientes. Pratique mais." << endl;
-			}
-			else if (aumentar == 2)
-			{
-				if (pontos_extras > 0)
-				{
-					cout << "Aumentou DEFESA +1 e VIDA" << endl;
-					defesa++;
-
-					//vida = pegar_vida();
-					//estado = pegar_estado(vida);
-
-					pontos_extras--;
-				}
-				else cout << "Pontos de atributos insuficientes. Pratique mais." << endl;
-			}
-			else cout << "Opcao Invalida" << endl;
-
-			system("pause");
-			system("cls");
-		}
-		else if (opcao == 0)
-		{
-			// ----- SE DIGITOU 0 (zero) ENTÃO SAI DO JOGO ----- 
-			sair = true;
-		}
-		else
-		{
-			// ----- SE DIGITOU QUALQUER OUTRA COISA ENTÃO MOSTRA MSG DE ERRO ----- 
-			cout << "Opcao invalida" << endl;
+		switch(opcao)
+		{case 1:
+			tela_treinamento();
+			break;
+			case 2:
+				tela_atributo();
+				case 0:
+					sair = true;
+					break;
+					default:
+						cout << "Opcao invalida" << endl;
 		}
 
-		// Limpa a tela para a próxima jogada
+	
+		// Limpa a tela para a prÃ³xima jogada
 		system("cls");
 	}
 
@@ -245,7 +131,130 @@ void mostra_menu()
 		cout << endl;
 		cout << "0- Sair" << endl;
 }
+void distribuir_atributo(char papel) 
+{switch(papel){
+	   case 'G':
+	   	case'g':
+	   		
+	ataque = 2;
+	defesa = 3;
+	vida = 10;
+	break;
+		
+		case 'M':
+		case'm':
+			
+		ataque = 3;
+		defesa = 2;
+		vida = 10;
+		break;
+		
+		case 'L':
+		case'l':
+			
+			ataque = 4;                                                                        
+		defesa = 1;
+		vida = 10;
+		break;
+	
+		default: 
+			cout << "Opcao invalida. Iniciando personagem fraco." << endl;
+		ataque = 1;
+		defesa = 1;
+		vida = 10;
+		
+}
 
+	system("cls");
+}
+void tela_treinamento()
+{	system("cls");
+
+			for (int vezes = 0; vezes < 20; vezes++)
+			{
+				cout << "Viajando para mares distantes.." << endl;
+				cout << endl;
+
+				if (vezes % 2 == 0)
+				{
+					cout << "                   ~." << endl;
+					cout << "            Ya...___|__..ab.     .   .  " << endl;
+					cout << "             Y88b  \\88b  \\88b   (     ) " << endl;
+					cout << "              Y88b  :88b  :88b   `.oo'  " << endl;
+					cout << "              :888  |888  |888  ( (`-'  " << endl;
+					cout << "     .---.    d88P  ;88P  ;88P   `.`.   " << endl;
+					cout << "    / .-._)  d8P-\"\"\" | \"\"\"'-Y8P      `.`. " << endl;
+					cout << "   ( (`._) .-.  .-. |.-.  .-.  .-.   ) )" << endl;
+					cout << "    \\ `---( O )( O )( O )( O )( O )-' / " << endl;
+					cout << "     `.    `-'  `-'  `-'  `-'  `-'  .'  " << endl;
+					cout << "       `---------------------------'" << endl;
+				}
+				else
+				{
+					cout << "                     ~." << endl;
+					cout << "              Ya...___|__..ab.     .   .  " << endl;
+					cout << "               Y88b  \\88b  \\88b   (     ) " << endl;
+					cout << "                Y88b  :88b  :88b   `.oo'  " << endl;
+					cout << "                :888  |888  |888  ( (`-'  " << endl;
+					cout << "       .---.    d88P  ;88P  ;88P   `.`.   " << endl;
+					cout << "      / .-._)  d8P-\"\"\" | \"\"\"'-Y8P      `.`. " << endl;
+					cout << "     ( (`._) .-.  .-. |.-.  .-.  .-.   ) )" << endl;
+					cout << "      \\ `---( O )( O )( O )( O )( O )-' / " << endl;
+					cout << "       `.    `-'  `-'  `-'  `-'  `-'  .'  " << endl;
+					cout << "         `---------------------------'" << endl;
+				}
+
+				system("cls");
+			}
+
+			cout << endl << "Voce treinou bastante durante sua viajem." << endl << endl;
+			// Aumentar os pontos extras do personagem.
+			pontos_extras++;
+
+			system("pause");
+			system("cls");
+}
+void tela_atributo()
+{	system("cls");
+
+			cout << "Voce tem " << pontos_extras << " pontos de atributo." << endl;
+			cout << endl;
+
+			int aumentar;
+			cout << "Aumentar.." << endl;
+			cout << "1. Ataque" << endl;
+			cout << "2. Defesa" << endl;
+			cin >> aumentar;
+
+			if (aumentar == 1)
+			{
+				if (pontos_extras > 0)
+				{
+					cout << "Aumentou ATAQUE +2" << endl;
+					ataque += 2;
+					pontos_extras--;
+				}
+				else cout << "Pontos de atributos insuficientes. Pratique mais." << endl;
+			}
+			else if (aumentar == 2)
+			{
+				if (pontos_extras > 0)
+				{
+					cout << "Aumentou DEFESA +1 e VIDA" << endl;
+					defesa++;
+
+					//vida = pegar_vida();
+					//estado = pegar_estado(vida);
+
+					pontos_extras--;
+				}
+				else cout << "Pontos de atributos insuficientes. Pratique mais." << endl;
+			}
+			else cout << "Opcao Invalida" << endl;
+
+			system("pause");
+			system("cls");
+}
 /*
 int pegar_vida()
 {
@@ -253,8 +262,8 @@ int pegar_vida()
 	return vida_nova;
 }
 */
-/*
-string pegar_estado(int vida)
+
+/*string pegar_estado(int vida)
 {
 	switch (vida)
 	{
