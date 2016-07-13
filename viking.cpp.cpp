@@ -2,12 +2,19 @@
 #include <string>
 using namespace std;
 // indentificador das função
+// função void não retorna nada
+// void significa vazio
 void tela_inicial();
 void mostra_personagem();
 void mostra_menu();
 void distribuir_atributo(char papel);
 void tela_treinamento();
 void tela_atributo();
+// a função que começa com inte retorna um numero inteiro
+int pegar_vida();
+// vai ser string pq vai retorna uma palavra
+// função pode ser de dois tipos a que não retorna nada do tipo void, e a que retorna alguma coisa e eu tenho que guarda em uma variavel
+string pegar_estado(int vida);
 
 
 //variaves globais 
@@ -15,8 +22,6 @@ void tela_atributo();
 int vida, defesa, ataque;
 string estado = "iniciante";
 int pontos_extras = 0;
-//int pegar_vida();
-//string pegar_estado(int vida);
 
 /*
 *	Jogo de RPG onde construímos um personagem Viking.
@@ -231,6 +236,8 @@ void tela_atributo()
 				if (pontos_extras > 0)
 				{
 					cout << "Aumentou ATAQUE +2" << endl;
+					//cont ;  cont = cont- 1 
+					//diminuir um, se o sina for ++ incrementa
 					ataque += 2;
 					pontos_extras--;
 				}
@@ -241,10 +248,11 @@ void tela_atributo()
 				if (pontos_extras > 0)
 				{
 					cout << "Aumentou DEFESA +1 e VIDA" << endl;
+				//
 					defesa++;
 
-					//vida = pegar_vida();
-					//estado = pegar_estado(vida);
+					vida = pegar_vida();
+					estado = pegar_estado(vida);
 
 					pontos_extras--;
 				}
@@ -255,31 +263,21 @@ void tela_atributo()
 			system("pause");
 			system("cls");
 }
-/*
+
 int pegar_vida()
 {
+	// ela vai pegar duas vezes a vida e salvar na vida_nova
 	int vida_nova = vida + (defesa * 2);
 	return vida_nova;
 }
-*/
 
-/*string pegar_estado(int vida)
+
+string pegar_estado(int vida)
 {
-	switch (vida)
-	{
-		case 10 ... 15: 
-			return "WEAK";
-		case 16 ... 25:
-			return "NORMAL";
-		case 26 ... 35:
-			return "STRONG";
-		case 35 ... 100:
-			return "SUPER STRONG";
-	}
+
 	if( vida >= 10 && vida <= 15) return "WEAK";
 	else if (vida >= 16 && vida <= 25) return "NORMAL";
 	else if (vida >= 26 && vida <= 35) return "STRONG";
 	else if (vida >= 36) return "SUPER STRONG";
 	else return "INVALID";
 }
-*/
