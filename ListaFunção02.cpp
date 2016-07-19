@@ -7,9 +7,9 @@ int main()
 {
 /*
 Programa MAIOR VALOR.
-O usuário digita dois valores e o programa diz qual é o maior.
-Dicas: Você precisa enviar alguma informação para a função?
-Dicas: Quais informações precisam ser passadas? (Não use variáveis globais!)
+O usuÃ¡rio digita dois valores e o programa diz qual Ã© o maior.
+Dicas: VocÃª precisa enviar alguma informaÃ§Ã£o para a funÃ§Ã£o?
+Dicas: Quais informaÃ§Ãµes precisam ser passadas? (NÃ£o use variÃ¡veis globais!)
 */
 int valor1, valor2;
 cout << "Digite o primeiro valor:" << endl;
@@ -22,9 +22,9 @@ cin >> valor2;
 }
 
 void maior_valor (int valor1, int valor2)
-{if (valor1 > valor2) cout << "O primeiro valor é maior que o segundo" << endl;
-else if (valor2 > valor1) cout << "O segundo valor é maior que o primeiro" << endl;
-else cout << "Os valores são iguais" << endl;
+{if (valor1 > valor2) cout << "O primeiro valor Ã© maior que o segundo" << endl;
+else if (valor2 > valor1) cout << "O segundo valor Ã© maior que o primeiro" << endl;
+else cout << "Os valores sÃ£o iguais" << endl;
 
 }
 
